@@ -1,0 +1,41 @@
+{
+  "description": "EN keyword suggestions for Voice-to-Article pipeline. Source: Google Suggest API (free, no volume data). Grouped by intent.",
+  "clusters": {
+    "ai_seo_tools": [
+      "ai content seo",
+      "ai seo content tool",
+      "seo content writing ai free",
+      "seo content writing with ai",
+      "seo content ai writer",
+      "ai seo content generator",
+      "ai seo content generator free",
+      "ai powered seo content generator",
+      "best ai seo content generator",
+      "innovative ai powered seo content generator"
+    ],
+    "voice_to_article": [
+      "speech article",
+      "speech article example",
+      "speech article writing",
+      "text to speech article reader",
+      "voice to blog post AI",
+      "turn voice into blog"
+    ],
+    "ai_blog_writing": [
+      "ai for bloggers seo content writing & optimization",
+      "best ai for writing blog content",
+      "how to automate blog writing",
+      "how to use ai for blog writing",
+      "best ai for seo articles",
+      "best ai for writing seo articles",
+      "ai for seo articles"
+    ],
+    "content_automation": [
+      "automated content creation",
+      "ai content workflow",
+      "ai copywriting workflow",
+      "ai content marketing workflow",
+      "content automation for solopreneurs"
+    ]
+  }
+}
