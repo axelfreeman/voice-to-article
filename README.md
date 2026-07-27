@@ -1,10 +1,27 @@
-# 🎙️ Voice → Article: AI SEO Copywriting Pipeline
+# 🎙️ Voice → Article
 
-**You're a founder. You know your shit. But writing blog posts? That's 3 hours you don't have — between keyword research, outlining, drafting, editing, SEO tags, and actually publishing the damn thing. So your site sits empty while competitors who can afford content teams eat your lunch.**
+> **5 minutes of talking. Published SEO article. $0.12.**
 
-This tool solves exactly that. You talk into Telegram like you're explaining your product to a friend. AI transcribes, researches what people are *actually* searching for, writes an SEO-optimized article in your voice, and deploys it to your site — schemas, cross-links, sitemap and all. 5 minutes of talking → published article. Forever.
+---
 
-No Ahrefs. No Semrush. No content calendars. No staring at a blank page. Just you, your phone, and your expertise.
+<br>
+
+### The problem
+
+Your site is empty. Not because you have nothing to say — because writing takes 5 hours you don't have.
+
+### The fix
+
+Open Telegram. Hit record. Explain your thing like you're talking to a friend.
+
+AI transcribes → researches trending keywords → writes the article in **your voice** → deploys it to your site with schemas, meta, cross-links, and sitemap.
+
+```
+📱 Voice memo  →  🔍 Semantics  →  ✍️ Article  →  🚀 Live on site
+      5 min            auto            auto             auto
+```
+
+No Ahrefs. No Semrush. No blank page. Just you and your phone.
 
 ---
 
