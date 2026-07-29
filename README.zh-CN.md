@@ -251,3 +251,25 @@ voice-to-article/
 ## 许可证
 
 MIT — 使用它、修改它、发布它。如果这个工具帮你节省了时间，[请我喝杯咖啡](https://t.me/axelfreeman)。
+
+---
+
+## 🔍 中文搜索关键词 · Baidu SEO
+
+`语音转文章` `AI写稿` `SEO自动化` `语音备忘录转博客` `DeepSeek写作` `自动发布文章` `Telegram机器人` `AI内容流水线` `独立创业者工具` `免费SEO工具` `语音转文字` `AI博客生成` `AEO优化` `内容自动化` `关键词研究工具`
+
+---
+
+## 🔗 相关项目 · Related Projects
+
+| 项目 | 说明 |
+|------|------|
+| [🤖 AI Marketing Toolkit](https://gitee.com/axelfreeman/ai-marketing-toolkit) | AI 营销脚本与方法论 |
+| [🎙️ Voice → Article](https://gitee.com/axelfreeman/voice-to-article) | 语音转 SEO 文章流水线 |
+| [📝 Blog](https://gitee.com/axelfreeman/blog) | AI 营销与 OSINT 文章 |
+| [💼 ОткликМашина](https://gitee.com/axelfreeman/otklikmashina) | 自动应聘 Telegram 机器人 |
+| [🧠 Vibe Marketing](https://gitee.com/axelfreeman/vibe-marketing) | AI 营销内容库 |
+
+---
+
+*📖 [English](https://github.com/axelfreeman) · [Русский](https://axelfreeman.ru) · [Gitee](https://gitee.com/axelfreeman)*
