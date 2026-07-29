@@ -29,7 +29,7 @@ AI 转写 → 研究热门关键词 → **用你的语气**写出文章 → 部�
 
 1. **你发送语音消息** → Telegram 机器人通过 Whisper 进行语音转文字
 2. **AI 提取结构** → 论点、章节、常见问题（FAQ）、关键词
-3. **语义研究** → 使用 Yandex Wordstat（俄语）或 Google Suggest（英语）挖掘热门话题
+3. **语义研究** → 使用 Yandex Wordstat（俄罗斯版 Google Keyword Planner）或 Google Suggest（英语）挖掘热门话题
 4. **AI 撰写文章** → DeepSeek（或 Claude/GPT）— SEO 优化，人类可读
 5. **自动部署** → FTP/SCP 上传到你的网站 + GitHub Markdown 备份
 6. **结构化数据标记** → 文章 + FAQPage JSON-LD，提升 AI 搜索可见性（AEO）
