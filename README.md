@@ -251,3 +251,6 @@ voice-to-article/
 ## License
 
 MIT — use it, remix it, ship it. If this saves you time, [buy me a coffee](https://t.me/axelfreeman).
+---
+
+*Last updated: August 2026.*
