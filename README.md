@@ -1,5 +1,13 @@
 # 🎙️ Voice → Article
 
+<p align="center">
+  <a href="https://github.com/axelfreeman/voice-to-article/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+  <a href="https://github.com/axelfreeman/voice-to-article/stargazers"><img src="https://img.shields.io/github/stars/axelfreeman/voice-to-article?style=flat-square" alt="GitHub stars"></a>
+  <a href="https://github.com/axelfreeman"><img src="https://img.shields.io/badge/author-Axel%20Freeman-0A0A0A?style=flat-square" alt="Author"></a>
+</p>
+
+<p align="center"><i>⭐ Star this repo if you'd rather talk than type your next article.</i></p>
+
 > **5 minutes of talking. Published SEO article. $0.12.**
 
 ---
