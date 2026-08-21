@@ -23,16 +23,9 @@ Turn Telegram voice memos into published SEO articles. The user dictates thought
 
 ### Phase 1: Receive & Transcribe
 
-1. Voice memo arrives via Telegram → transcribe with OpenAI Whisper
-2. Save RAW transcript (slang, profanity, repetitions — ALL of it)
-3. Post bullet-point summary back to user as outline scaffold
-
-**Whisper API call:**
-```bash
-curl https://api.openai.com/v1/audio/transcriptions \
-  -H "Authorization: Bearer ***" \
-  -F file="@voice.ogg" -F model="whisper-1"
-```
+1. Voice memo arrives via Telegram → transcribe with OpenAI Whisper (exact call and key in SETUP.md).
+2. Save RAW transcript (slang, profanity, repetitions — ALL of it).
+3. Post bullet-point summary back to user as outline scaffold.
 
 ### Phase 2: Extract Structure
 
@@ -48,19 +41,6 @@ Query **Google Suggest** for topic angles and related queries — free, no API k
 
 Collect 6-10 target keywords for Article Schema. Prioritize exact match, growing topics.
 
-**Google Suggest (free, no key):**
-```python
-GET https://suggestqueries.google.com/complete/search?client=firefox&hl=en&q=keyword
-```
-
-**Google Trends (free, trending topics):**
-```python
-from pytrends.request import TrendReq
-pytrends = TrendReq(hl='en', tz=300)
-pytrends.build_payload(['seed_keyword'])
-df = pytrends.interest_over_time()
-```
-
 ### Phase 4: Write HTML
 
 Generate HTML with DeepSeek API. **Critical: preserve author's voice.** Do NOT rewrite into corporate-speak.
@@ -73,26 +53,9 @@ Generate HTML with DeepSeek API. **Critical: preserve author's voice.** Do NOT r
 - 4-6 FAQ Q&A — must match JSON-LD EXACTLY
 - Design: Merriweather + Ubuntu, H2 weight:500 margin:48px 0 8px, accent #2563eb
 
-**DeepSeek call:**
-```python
-POST https://api.deepseek.com/v1/chat/completions
-model: "deepseek-chat"
-system: "You are a SEO copywriter. Write like the author speaks."
-messages: [{"role": "user", "content": "raw transcript + structure + keywords"}]
-```
-
 ### Phase 5: Deploy
 
-**SCP:**
-```bash
-scp article.html root@host:/var/www/site.com/blog/
-ssh root@host "chown www-data:www-data /var/www/site.com/blog/article.html"
-```
-
-**FTP:**
-```bash
-curl -T article.html ftp://user:pass@host/public_html/
-```
+Push the finished HTML to the deploy target (SCP or FTP — exact host and credentials live in SETUP.md, never hardcoded).
 
 ### Phase 6: Post-Deploy
 
@@ -101,11 +64,11 @@ curl -T article.html ftp://user:pass@host/public_html/
 3. Cross-link from existing articles (Read next blocks)
 4. Create GitHub markdown backup → push to blog repo
 5. Ping search engines (Google + Bing)
-6. Verify: `curl -sI [url]` → 200
+6. Verify the deployed URL returns HTTP 200
 
 ## Verification
 
-- [ ] `curl -sI [url]` → HTTP 200
+- [ ] Deployed URL returns HTTP 200
 - [ ] Article + FAQPage Schema present (grep for JSON-LD)
 - [ ] FAQPage visible text matches JSON-LD (grep both, diff)
 - [ ] Sitemap updated
