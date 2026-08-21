@@ -1,5 +1,5 @@
 {
-  "description": "RU keyword clusters for Voice-to-Article pipeline. Source: Yandex Wordstat API. Volumes are broad match monthly impressions (RU market). Exact match is typically 2-5% of broad.",
+  "description": "RU keyword clusters for Voice-to-Article pipeline. Source: Google Suggest. Volumes are broad match monthly impressions (RU market). Exact match is typically 2-5% of broad.",
   "clusters": {
     "ai_copywriting": {
       "label": "AI Copywriting & Text Generation",

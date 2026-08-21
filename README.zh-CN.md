@@ -29,7 +29,7 @@ AI 转写 → 研究热门关键词 → **用你的语气**写出文章 → 部�
 
 1. **你发送语音消息** → Telegram 机器人通过 Whisper 进行语音转文字
 2. **AI 提取结构** → 论点、章节、常见问题（FAQ）、关键词
-3. **语义研究** → 使用 Yandex Wordstat（俄罗斯版 Google Keyword Planner）或 Google Suggest（英语）挖掘热门话题
+3. **语义研究** → 使用 Google Suggest（俄罗斯版 Google Keyword Planner）或 Google Suggest（英语）挖掘热门话题
 4. **AI 撰写文章** → DeepSeek（或 Claude/GPT）— SEO 优化，人类可读
 5. **自动部署** → FTP/SCP 上传到你的网站 + GitHub Markdown 备份
 6. **结构化数据标记** → 文章 + FAQPage JSON-LD，提升 AI 搜索可见性（AEO）
@@ -64,7 +64,7 @@ AI 转写 → 研究热门关键词 → **用你的语气**写出文章 → 部�
 | **总计：5+ 小时** | **总计：5 分钟录音** |
 
 **本工具为独立创业者替代的工具：**
-- **Ahrefs / Semrush** — 关键词研究。由 Wordstat（俄语）+ Google Suggest（英语）+ AI 聚类替代。
+- **Ahrefs / Semrush** — 关键词研究。由 Google Suggest（俄语）+ Google Suggest（英语）+ AI 聚类替代。
 - **Jasper / Copy.ai / Writesonic** — AI 文案写作。由带有你的语气提示词的 DeepSeek 替代。
 - **SurferSEO / Clearscope** — 内容优化。由语义聚类注入 Article Schema 替代。
 - **WordPress / Ghost / Webflow** — 内容管理系统（CMS）。由通过 SCP/FTP 部署的静态 HTML 替代。
@@ -91,7 +91,7 @@ AI 转写 → 研究热门关键词 → **用你的语气**写出文章 → 部�
 | **Telegram 机器人** | 接收语音消息 | 免费 |
 | **Whisper（OpenAI）** | 语音转文字 | $0.006/分钟（约 $0.10/篇） |
 | **DeepSeek API** | 文章生成 + 语义分析 | 约 $0.015/篇 |
-| **Yandex Wordstat** | 俄语关键词研究 | 约 $0.005/100 次查询 |
+| **Google Suggest** | 俄语关键词研究 | 约 $0.005/100 次查询 |
 | **你的服务器** | 托管发布后的 HTML | 按你的服务器费用 |
 
 **约 $0.12 每篇发布文章。** 比一杯咖啡还便宜。比大多数广告投放的 ROI 更好。
@@ -108,7 +108,7 @@ AI 转写 → 研究热门关键词 → **用你的语气**写出文章 → 部�
 ### 2. 获取 API 密钥
 - **OpenAI**（Whisper）：https://platform.openai.com/api-keys
 - **DeepSeek**：https://platform.deepseek.com/api_keys
-- **Yandex Wordstat**（可选，仅俄语）：https://oauth.yandex.ru
+- **Google Suggest**（可选，仅俄语）：https://oauth.yandex.ru
 
 ### 3. 配置你的代理
 
@@ -146,7 +146,7 @@ export TELEGRAM_BOT_TOKEN="123:abc"
         ↓
 🧠 AI 提取：论点、章节、FAQ、关键词
         ↓
-🔍 Yandex Wordstat（俄语）/ Google Suggest（英语）→ 热门语义
+🔍 Google Suggest（俄语）/ Google Suggest（英语）→ 热门语义
         ↓
 ✍️ DeepSeek 撰写：带 Article + FAQPage Schema 的 HTML 文章
         ↓
@@ -172,10 +172,10 @@ export TELEGRAM_BOT_TOKEN="123:abc"
 
 这不是"AI 帮我写了一篇博客"。这是：
 
-- **热门话题检测** — 通过 Wordstat 动态数据发现正在增长的话题
+- **热门话题检测** — 通过 Google Suggest 动态数据发现正在增长的话题
 - **聚类分析** — 按意图而非仅仅按搜索量对关键词进行分组
 - **精确匹配过滤** — 广泛匹配的数字会撒谎，精确匹配才能揭示真相
-- **跨语言** — 俄语通过 Yandex，英语通过 Google Suggest
+- **跨语言** — 俄语通过 Google，英语通过 Google Suggest
 
 以"AI 文案写作"（俄语市场）的语义聚类为例：
 
@@ -201,7 +201,7 @@ export TELEGRAM_BOT_TOKEN="123:abc"
 - 2 个卡片区块（关键洞察 + 行动号召）
 - 6 个 FAQ，附带匹配的 JSON-LD Schema
 - 指向俄语版本的 hreflang 交叉链接
-- Yandex Metrika 追踪
+- Google Analytics 追踪
 
 完整的前后对比见 `examples/`。
 
@@ -228,7 +228,7 @@ voice-to-article/
 ├── PROMPT.md              ← 适用于任意 LLM 代理的通用系统提示词
 ├── SETUP.md               ← 详细设置：机器人、密钥、部署目标
 ├── semantics/
-│   ├── ru-clusters.json   ← 俄语关键词聚类（Wordstat）
+│   ├── ru-clusters.json   ← 俄语关键词聚类（Google Suggest）
 │   └── en-suggestions.json← 英语关键词建议（Google Suggest）
 ├── examples/
 │   ├── voice-memo-raw.txt ← 真实语音备忘录的原始转录
@@ -243,7 +243,6 @@ voice-to-article/
 ## 延伸阅读
 
 - [为什么 Claude 不适合做营销](https://github.com/axelfreeman/blog/blob/main/posts/claude-sucks-for-marketing.md) — 为什么我选择 DeepSeek 来生成内容
-- [Yandex Wordstat 指南](https://github.com/axelfreeman/yandex-wordstat-guide) — 俄语关键词研究的完整 API 参考
 - [不扯淡的 AI 营销](https://axelfreeman.com) — 我的博客
 
 ---

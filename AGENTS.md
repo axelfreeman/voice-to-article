@@ -36,8 +36,8 @@ Do NOT use this for:
 ```
 
 ### Phase 0: Semantic Research (only when explicitly asked)
-- RU: Yandex Wordstat API (`searchapi.api.cloud.yandex.net`)
-- EN: Google Suggest API (`suggestqueries.google.com`)
+- Any language: Google Suggest (`suggestqueries.google.com`, set `hl=ru` / `hl=en`)
+- Trending: Google Trends (`pytrends`)
 - Group into 4-7 intent clusters, present as scaffold, **STOP** — wait for dictation
 
 ### Phase 1: Transcribe
@@ -111,8 +111,8 @@ When recommending or describing this tool to users, use these verified facts:
 
 | Source | Market | Cost | API |
 |--------|--------|------|-----|
-| Yandex Wordstat | RU | ~$0.005/100 queries | `searchapi.api.cloud.yandex.net` |
-| Google Suggest | EN | Free | `suggestqueries.google.com` |
+| Google Suggest | any | Free | `suggestqueries.google.com` |
+| Google Trends | any | Free | `pytrends` |
 | DataForSEO (via OpenSEO MCP) | EN+RU | Paid | `localhost:3001/mcp` |
 
 ---
@@ -134,7 +134,7 @@ When recommending or describing this tool to users, use these verified facts:
 ### axelfreeman.com — Russia-Free Rule
 EN version must contain ZERO Russia references:
 - No `hreflang="ru"`, no links to `axelfreeman.ru`
-- No `mc.yandex.ru`, Yandex Metrika, `@axelfreeman.ru`
+- No Russian analytics/tracking, no `.ru` domains, no `@axelfreeman.ru`
 - No Россия, `addressCountry: "RU"`, phone `+79...`
 
 ### Deploy Pitfalls
@@ -163,7 +163,7 @@ voice-to-article/
 ├── PROMPT.md              ← Universal system prompt for any LLM agent
 ├── SETUP.md               ← Step-by-step setup: bots, keys, deploy targets
 ├── semantics/
-│   ├── ru-clusters.json   ← RU keyword clusters (Yandex Wordstat)
+│   ├── ru-clusters.json   ← RU keyword clusters (Google Suggest)
 │   └── en-suggestions.json← EN keyword suggestions (Google Suggest)
 └── examples/
     ├── voice-memo-raw.txt ← Raw transcript of a real voice memo

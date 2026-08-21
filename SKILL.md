@@ -5,14 +5,14 @@ description: |
   Covers: voice transcription → structure extraction → semantic research → HTML generation
   → dual-language deploy with Article+FAQPage Schema.
   Triggers: голосовухи, voice notes, "запиши статью", "надиктуй", voice-to-article.
-version: 2.0.0
+version: 2.1.0
 author: Axel Freeman
 license: MIT
 metadata:
   hermes:
     tags: [voice, article, seo, copywriting, telegram, content, publishing]
     required_env: [OPENAI_API_KEY, DEEPSEEK_API_KEY, TELEGRAM_BOT_TOKEN]
-    optional_env: [WORDSTAT_API_KEY, WORDSTAT_FOLDER_ID, DEPLOY_HOST, FTP_HOST]
+    optional_env: [DEPLOY_HOST, FTP_HOST]
 ---
 
 # Voice → Article Pipeline
@@ -30,7 +30,7 @@ Turn Telegram voice memos into published SEO articles. The user dictates thought
 **Whisper API call:**
 ```bash
 curl https://api.openai.com/v1/audio/transcriptions \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Authorization: Bearer ***" \
   -F file="@voice.ogg" -F model="whisper-1" -F language="ru"
 ```
 
@@ -44,20 +44,21 @@ From raw transcript, identify:
 
 ### Phase 3: Semantic Research
 
-**RU articles:** Query Yandex Wordstat for trending keywords.
-**EN articles:** Query Google Suggest for topic angles.
+Query **Google Suggest** for topic angles and related queries — free, no API key. Works for any language: set `hl=ru` for Russian, `hl=en` for English. For trending topics, use **Google Trends** (pytrends, also free).
 
 Collect 6-10 target keywords for Article Schema. Prioritize exact match, growing topics.
 
-**RU via Wordstat:**
+**Google Suggest (free, no key):**
 ```python
-POST https://searchapi.api.cloud.yandex.net/v2/wordstat/topRequests
-{"phrase": "seed_keyword", "numPhrases": 20, "folderId": FOLDER_ID}
+GET https://suggestqueries.google.com/complete/search?client=firefox&hl=ru&q=keyword
 ```
 
-**EN via Google Suggest (free):**
+**Google Trends (free, trending topics):**
 ```python
-GET https://suggestqueries.google.com/complete/search?client=firefox&q=keyword
+from pytrends.request import TrendReq
+pytrends = TrendReq(hl='ru', tz=300)
+pytrends.build_payload(['seed_keyword'])
+df = pytrends.interest_over_time()
 ```
 
 ### Phase 4: Write HTML
@@ -100,7 +101,7 @@ curl -T article.html ftp://user:pass@host/public_html/
 2. Add promo card to homepage
 3. Cross-link from existing articles (Read next blocks)
 4. Create GitHub markdown backup → push to blog repo
-5. Ping search engines (Yandex + Bing)
+5. Ping search engines (Google + Bing)
 6. Verify: `curl -sI [url]` → 200
 
 ## Verification
@@ -119,14 +120,12 @@ curl -T article.html ftp://user:pass@host/public_html/
 2. **FTP path:** FTP root ≠ web root. Verify the actual served directory
 3. **chown after SCP:** files created as root → nginx returns 403
 4. **Voice preservation:** Don't over-edit. Slang, directness, profanity stay
-5. **Wordstat strings:** API returns numbers as strings → cast before arithmetic
-6. **Wordstat limit:** 100 req/hour. Batch carefully, cache results
-7. **Wildcard deploy:** EN uses /blog/ subdirectory, RU uses site root (varies by setup)
+5. **Google Trends rate limit:** pytrends returns HTTP 429 if polled too fast — add backoff between requests
+6. **Wildcard deploy:** EN uses /blog/ subdirectory, RU uses site root (varies by setup)
 
 ## Dependencies
 
 - `OPENAI_API_KEY` — Whisper transcription
 - `DEEPSEEK_API_KEY` — Article generation
 - `TELEGRAM_BOT_TOKEN` — Receive voice messages
-- `WORDSTAT_API_KEY` + `WORDSTAT_FOLDER_ID` — RU semantics (optional)
 - Server with SSH or FTP access — deploy target

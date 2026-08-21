@@ -40,14 +40,10 @@ Step-by-step. No fluff.
 
 **Cost:** ~$0.015 per article. DeepSeek is ~15x cheaper than GPT-4 for comparable quality on content tasks. Claude is even more expensive — use DeepSeek.
 
-### Yandex Wordstat (RU keyword research — optional)
-1. Go to https://oauth.yandex.ru
-2. Create application
-3. Get Client ID + Secret → exchange for IAM token
-4. Or: create service account → API key with `search-api.webSearchUser` role
-5. `export WORDSTAT_API_KEY="..."` and `export WORDSTAT_FOLDER_ID="b1g..."`
+### Google Suggest + Trends (keyword research — free, no key)
+No setup needed. The pipeline calls `suggestqueries.google.com` (autocomplete) and `pytrends` (Google Trends) directly — zero API keys, zero cost.
 
-**Cost:** ~$0.005 per 100 queries. $5 deposit lasts 4-5 months of heavy use.
+**Cost:** $0.
 
 ---
 
@@ -118,7 +114,7 @@ cp PROMPT.md .cursorrules
 2. The agent should:
    - Transcribe the voice memo
    - Post a summary back
-   - Research semantics (if Wordstat configured)
+   - Research semantics (Google Suggest / Trends)
    - Generate HTML with Article+FAQPage Schema
    - Deploy to your server
 3. Verify: open the URL in your browser
@@ -151,7 +147,8 @@ Edit the HTML template in `PROMPT.md` → replace fonts, colors, layout.
 | Whisper transcription empty | Voice message too short (<1s) or unsupported format |
 | Article sounds like ChatGPT | Model is over-editing. Add "preserve raw voice" to prompt |
 | Deploy 403 Forbidden | `chown www-data:www-data` on the uploaded file |
-| Wordstat returns 0 results | Phrase too niche. Use broader seed keywords |
+| Google Suggest returns few results | Phrase too niche. Use broader seed keywords |
+| Google Trends rate-limited | HTTP 429 — slow down, add backoff |
 | FAQPage Schema mismatch | Visible FAQ text ≠ JSON-LD text. They must be identical |
 | FTP uploads to wrong directory | FTP root ≠ web root. Check `FTP_PATH` |
 
@@ -165,7 +162,7 @@ For 10 articles/month:
 |------|------|
 | Whisper (50 min audio) | $0.30 |
 | DeepSeek (10 generations) | $0.15 |
-| Wordstat (100 queries) | $0.005 |
+| Keyword research (Google Suggest/Trends) | $0 |
 | Server/hosting | $5-20 |
 | **Total** | **~$5-20/month** |
 

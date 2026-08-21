@@ -21,15 +21,11 @@ From the raw transcript, extract:
 - **Supporting points** — claims, examples, data, rhetorical moves, CTAs
 - **FAQ candidates** — 4-6 questions the article raises and answers
 
-### 3. SEMANTIC RESEARCH (optional, RU prioritized)
-For Russian-language articles:
-- Query Yandex Wordstat API for trending keywords in the topic
+### 3. SEMANTIC RESEARCH (optional)
+- Query Google Suggest for related queries and topic angles — free, no key, any language (set `hl=ru` for Russian, `hl=en` for English)
+- Use Google Trends (pytrends) for trending topics
 - Filter exact match, prioritize growing topics
 - Inject 6-10 keywords into the Article Schema
-
-For English-language articles:
-- Use Google Suggest API for related queries
-- No volume data available, use for topic angles
 
 ### 4. WRITE THE ARTICLE
 **CRITICAL RULES:**
@@ -87,7 +83,7 @@ After writing HTML:
 - Add promo card to homepage
 - Cross-link from existing articles
 - Create GitHub markdown backup
-- Ping search engines (Yandex, Bing)
+- Ping search engines (Google, Bing)
 
 ### 6. VERIFY
 ```bash
@@ -112,34 +108,34 @@ grep -c 'FAQPage' /path/to/article.html  # must be ≥1
 3. chown www-data after SCP — nginx returns 403 without it
 4. hreflang mandatory for bilingual sites
 5. Don't over-edit the author's voice — if they said "this is bullshit", keep it
-6. Numbers in API responses are strings — cast to int() before arithmetic
-7. Yandex Wordstat has 100 req/hour limit — batch carefully
+6. Google Trends returns HTTP 429 if polled too fast — add backoff between requests
 
 ## API ENDPOINTS REFERENCE
 
 **Whisper:**
 ```bash
 curl https://api.openai.com/v1/audio/transcriptions \
-  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Authorization: Bearer ***" \
   -F file="@voice.ogg" -F model="whisper-1"
 ```
 
 **DeepSeek (content generation):**
 ```bash
 curl https://api.deepseek.com/v1/chat/completions \
-  -H "Authorization: Bearer $DEEPSEEK_API_KEY" \
+  -H "Authorization: Bearer ***" \
   -H "Content-Type: application/json" \
   -d '{"model":"deepseek-chat","messages":[...]}'
 ```
 
-**Yandex Wordstat (RU semantics):**
+**Google Suggest (semantics, free, no key):**
 ```bash
-curl -X POST 'https://searchapi.api.cloud.yandex.net/v2/wordstat/topRequests' \
-  -H "Authorization: Api-Key $WORDSTAT_API_KEY" \
-  -d '{"phrase":"keyword","numPhrases":20,"folderId":"..."}'
+curl 'https://suggestqueries.google.com/complete/search?client=firefox&hl=ru&q=keyword'
 ```
 
-**Google Suggest (EN semantics, free):**
-```bash
-curl 'https://suggestqueries.google.com/complete/search?client=firefox&q=keyword'
+**Google Trends (trending, free):**
+```python
+from pytrends.request import TrendReq
+pytrends = TrendReq(hl='ru', tz=300)
+pytrends.build_payload(['keyword'])
+df = pytrends.interest_over_time()
 ```

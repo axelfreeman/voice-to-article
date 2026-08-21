@@ -39,7 +39,7 @@ No Ahrefs. No Semrush. No blank page. Just you and your phone.
 
 1. **You send voice notes** → Telegram bot transcribes via Whisper
 2. **AI extracts structure** → thesis, sections, FAQ, keywords
-3. **Semantic research** → Yandex Wordstat (RU) or Google Suggest (EN) for trending topics
+3. **Semantic research** → Google Suggest + Google Trends for trending topics (any language)
 4. **AI writes the article** → DeepSeek (or Claude/GPT) — SEO-optimized, human-readable
 5. **Auto-deploy** → FTP/SCP to your site + GitHub markdown backup
 6. **Schema markup** → Article + FAQPage JSON-LD for AI search visibility (AEO)
@@ -74,7 +74,7 @@ No dashboards. No content calendars. Just talk about what you know.
 | **Total: 5+ hours** | **Total: 5 minutes of talking** |
 
 **Tools this replaces for a solopreneur:**
-- **Ahrefs / Semrush** — keyword research. Replaced by Wordstat (RU) + Google Suggest (EN) + AI clustering.
+- **Ahrefs / Semrush** — keyword research. Replaced by Google Suggest + Google Trends + AI clustering.
 - **Jasper / Copy.ai / Writesonic** — AI copywriting. Replaced by DeepSeek with your voice prompt.
 - **SurferSEO / Clearscope** — content optimization. Replaced by semantic cluster injection into Article Schema.
 - **WordPress / Ghost / Webflow** — CMS. Replaced by static HTML deploy via SCP/FTP.
@@ -101,7 +101,7 @@ You still need a brain. You still need expertise. But you no longer need 6 tools
 | **Telegram Bot** | Receives voice messages | Free |
 | **Whisper (OpenAI)** | Speech-to-text | $0.006/min (~$0.10/article) |
 | **DeepSeek API** | Article generation + semantics | ~$0.015/article |
-| **Yandex Wordstat** | RU keyword research | ~$0.005 per 100 queries |
+| **Google Suggest / Trends** | Keyword research (any language) | Free |
 | **Your server** | Host the published HTML | Whatever you pay |
 
 **~$0.12 per published article.** Cheaper than a coffee. Better ROI than most ad spend.
@@ -118,7 +118,7 @@ Talk to @BotFather → /newbot → get token
 ### 2. Get API Keys
 - **OpenAI** (Whisper): https://platform.openai.com/api-keys
 - **DeepSeek**: https://platform.deepseek.com/api_keys
-- **Yandex Wordstat** (optional, RU only): https://oauth.yandex.ru
+- **Google Suggest / Trends** — free, no key needed
 
 ### 3. Configure Your Agent
 
@@ -156,7 +156,7 @@ Send a voice message to your bot. The agent picks it up, transcribes, structures
         ↓
 🧠 AI extracts: thesis, sections, FAQ, keywords
         ↓
-🔍 Yandex Wordstat (RU) / Google Suggest (EN) → Trending semantics
+🔍 Google Suggest / Google Trends → Trending semantics
         ↓
 ✍️ DeepSeek writes: HTML article with Article+FAQPage Schema
         ↓
@@ -182,20 +182,16 @@ From my production pipeline (axelfreeman.com + axelfreeman.ru):
 
 This isn't "AI wrote me a blog post." This is:
 
-- **Trending topic detection** — Wordstat dynamics to find what's growing
+- **Trending topic detection** — Google Trends to find what's growing
 - **Cluster analysis** — group keywords by intent, not just volume
 - **Exact match filtering** — broad numbers lie, exact match tells the truth
-- **Cross-language** — RU via Yandex, EN via Google Suggest
+- **Cross-language** — any language via Google Suggest + Trends
 
-Example semantic clusters for "AI copywriting" (RU market):
+Example Google Suggest expansions for "AI copywriting":
 
-| Cluster | Volume | Top Phrase |
-|---------|--------|------------|
-| AI text generation | 330K/mo | нейросеть текст |
-| AI for writing | 36K/mo | ии для написания текстов |
-| Voice → text | 70K/mo | аудио в текст |
-| SEO copywriting | 170/mo | seo текст сайт |
-| Content creation | 60K/mo | создание контента |
+- `ai copywriting` → `ai copywriting tools`, `ai copywriting free`, `ai copywriting generator`
+- `нейросеть текст` → `нейросеть написать текст`, `нейросеть текст онлайн`
+- `аудио в текст` → `аудио в текст онлайн`, `аудио в текст бесплатно`
 
 Full semantic data: `semantics/` directory.
 
@@ -211,7 +207,7 @@ Full semantic data: `semantics/` directory.
 - 2 card blocks (key insight + CTA)
 - 6 FAQ with matching JSON-LD Schema
 - hreflang cross-link to RU version
-- Yandex Metrika tracking
+- Google Analytics tracking
 
 See `examples/` for the full before/after.
 
@@ -238,7 +234,7 @@ voice-to-article/
 ├── PROMPT.md              ← Universal system prompt for any LLM agent
 ├── SETUP.md               ← Detailed setup: bots, keys, deploy targets
 ├── semantics/
-│   ├── ru-clusters.json   ← RU keyword clusters (Wordstat)
+│   ├── ru-clusters.json   ← RU keyword clusters (Google Suggest)
 │   └── en-suggestions.json← EN keyword suggestions (Google Suggest)
 ├── examples/
 │   ├── voice-memo-raw.txt ← Raw transcript of a real voice memo
@@ -253,7 +249,6 @@ voice-to-article/
 ## Read Also
 
 - [Why Claude Sucks for Marketing](https://github.com/axelfreeman/blog/blob/main/posts/claude-sucks-for-marketing.md) — why I use DeepSeek for content
-- [Yandex Wordstat Guide](https://github.com/axelfreeman/yandex-wordstat-guide) — full API reference for RU keyword research
 - [AI Marketing Without Bullshit](https://axelfreeman.com) — my blog
 
 ---
