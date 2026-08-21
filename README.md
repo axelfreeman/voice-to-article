@@ -1,5 +1,7 @@
 # 🎙️ Voice → Article
 
+[![skills.sh](https://skills.sh/b/axelfreeman/voice-to-article)](https://skills.sh/axelfreeman/voice-to-article)
+
 <p align="center">
   <a href="https://github.com/axelfreeman/voice-to-article/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <a href="https://github.com/axelfreeman/voice-to-article/stargazers"><img src="https://img.shields.io/github/stars/axelfreeman/voice-to-article?style=flat-square" alt="GitHub stars"></a>
