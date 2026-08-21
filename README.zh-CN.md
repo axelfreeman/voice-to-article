@@ -108,7 +108,7 @@ AI 转写 → 研究热门关键词 → **用你的语气**写出文章 → 部�
 ### 2. 获取 API 密钥
 - **OpenAI**（Whisper）：https://platform.openai.com/api-keys
 - **DeepSeek**：https://platform.deepseek.com/api_keys
-- **Google Suggest**（可选，仅俄语）：https://oauth.yandex.ru
+- **Google Suggest**（免费，无需密钥）
 
 ### 3. 配置你的代理
 
