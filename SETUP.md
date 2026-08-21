@@ -62,7 +62,7 @@ The agent will:
 3. `chown www-data:www-data` (for nginx)
 4. Verify: `curl -sI https://yoursite.com/blog/article-slug.html`
 
-### Option B: FTP (e.g., shared hosting, TimeWeb, Beget)
+### Option B: FTP (shared hosting)
 ```bash
 export FTP_HOST="ftp.yourhost.com"
 export FTP_USER="username"
@@ -133,7 +133,7 @@ In `SKILL.md` or `PROMPT.md`, replace `deepseek-chat` with:
 Edit the HTML template in `PROMPT.md` → replace fonts, colors, layout.
 
 ### Add more semantic sources
-- **Ahrefs/Semrush API** — EN keyword volumes
+- **Ahrefs/Semrush API** — keyword volumes
 - **Google Keyword Planner** — via Ads API
 - **DataForSEO** — structured SERP data
 

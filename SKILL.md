@@ -3,9 +3,9 @@ name: voice-to-article
 description: |
   Voice memo → SEO article pipeline. When the user sends voice notes to publish an article.
   Covers: voice transcription → structure extraction → semantic research → HTML generation
-  → dual-language deploy with Article+FAQPage Schema.
-  Triggers: голосовухи, voice notes, "запиши статью", "надиктуй", voice-to-article.
-version: 2.1.0
+  → deploy with Article+FAQPage Schema.
+  Triggers: voice notes, "dictate an article", "turn this voice memo into an article", voice-to-article.
+version: 2.2.0
 author: Axel Freeman
 license: MIT
 metadata:
@@ -31,7 +31,7 @@ Turn Telegram voice memos into published SEO articles. The user dictates thought
 ```bash
 curl https://api.openai.com/v1/audio/transcriptions \
   -H "Authorization: Bearer ***" \
-  -F file="@voice.ogg" -F model="whisper-1" -F language="ru"
+  -F file="@voice.ogg" -F model="whisper-1"
 ```
 
 ### Phase 2: Extract Structure
@@ -44,19 +44,19 @@ From raw transcript, identify:
 
 ### Phase 3: Semantic Research
 
-Query **Google Suggest** for topic angles and related queries — free, no API key. Works for any language: set `hl=ru` for Russian, `hl=en` for English. For trending topics, use **Google Trends** (pytrends, also free).
+Query **Google Suggest** for topic angles and related queries — free, no API key. Works for any language (set `hl=` accordingly). For trending topics, use **Google Trends** (pytrends, also free).
 
 Collect 6-10 target keywords for Article Schema. Prioritize exact match, growing topics.
 
 **Google Suggest (free, no key):**
 ```python
-GET https://suggestqueries.google.com/complete/search?client=firefox&hl=ru&q=keyword
+GET https://suggestqueries.google.com/complete/search?client=firefox&hl=en&q=keyword
 ```
 
 **Google Trends (free, trending topics):**
 ```python
 from pytrends.request import TrendReq
-pytrends = TrendReq(hl='ru', tz=300)
+pytrends = TrendReq(hl='en', tz=300)
 pytrends.build_payload(['seed_keyword'])
 df = pytrends.interest_over_time()
 ```
@@ -67,7 +67,6 @@ Generate HTML with DeepSeek API. **Critical: preserve author's voice.** Do NOT r
 
 **HTML requirements:**
 - Article + FAQPage JSON-LD Schema
-- hreflang cross-links (if bilingual)
 - TLDR block: bold opener + 2-3 sentence summary
 - 6-10 H2 sections with mix of <p>, <ul>, <ol>
 - 2-4 card blocks (block-text class) for insights/CTAs/warnings
@@ -84,13 +83,13 @@ messages: [{"role": "user", "content": "raw transcript + structure + keywords"}]
 
 ### Phase 5: Deploy
 
-**EN articles → SCP:**
+**SCP:**
 ```bash
 scp article.html root@host:/var/www/site.com/blog/
 ssh root@host "chown www-data:www-data /var/www/site.com/blog/article.html"
 ```
 
-**RU articles → FTP:**
+**FTP:**
 ```bash
 curl -T article.html ftp://user:pass@host/public_html/
 ```
@@ -109,7 +108,6 @@ curl -T article.html ftp://user:pass@host/public_html/
 - [ ] `curl -sI [url]` → HTTP 200
 - [ ] Article + FAQPage Schema present (grep for JSON-LD)
 - [ ] FAQPage visible text matches JSON-LD (grep both, diff)
-- [ ] hreflang cross-links present (bilingual sites)
 - [ ] Sitemap updated
 - [ ] Homepage card live
 - [ ] Cross-links added to existing articles
@@ -121,7 +119,7 @@ curl -T article.html ftp://user:pass@host/public_html/
 3. **chown after SCP:** files created as root → nginx returns 403
 4. **Voice preservation:** Don't over-edit. Slang, directness, profanity stay
 5. **Google Trends rate limit:** pytrends returns HTTP 429 if polled too fast — add backoff between requests
-6. **Wildcard deploy:** EN uses /blog/ subdirectory, RU uses site root (varies by setup)
+6. **Wildcard deploy:** the blog uses a /blog/ subdirectory (varies by setup)
 
 ## Dependencies
 

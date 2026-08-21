@@ -22,7 +22,7 @@ From the raw transcript, extract:
 - **FAQ candidates** — 4-6 questions the article raises and answers
 
 ### 3. SEMANTIC RESEARCH (optional)
-- Query Google Suggest for related queries and topic angles — free, no key, any language (set `hl=ru` for Russian, `hl=en` for English)
+- Query Google Suggest for related queries and topic angles — free, no key, any language
 - Use Google Trends (pytrends) for trending topics
 - Filter exact match, prioritize growing topics
 - Inject 6-10 keywords into the Article Schema
@@ -31,13 +31,12 @@ From the raw transcript, extract:
 **CRITICAL RULES:**
 - Preserve the author's voice. Do NOT rewrite into corporate-speak.
 - Keep directness, slang, personality.
-- RU: conversational Russian with slang. EN: conversational American confidence.
 - Use "I" not "we". The author is one person.
 
 **HTML STRUCTURE (mandatory):**
 ```html
 <!DOCTYPE html>
-<html lang="en|ru">
+<html lang="en">
 <head>
     <!-- full meta, og, hreflang, Article+FAQPage Schema -->
 </head>
@@ -66,7 +65,7 @@ From the raw transcript, extract:
 - Card blocks: 2-4, emoji titles, for insights/CTA/warnings
 - FAQ: 4-6 Q&A, must match JSON-LD exactly
 - Keywords: 6-10 in Article schema
-- Slug: lowercase, hyphens, English even for RU version
+- Slug: lowercase, hyphens
 
 ### 5. DEPLOY
 Environment variables required:
@@ -106,9 +105,8 @@ grep -c 'FAQPage' /path/to/article.html  # must be ≥1
 1. FAQPage JSON-LD text MUST match visible FAQ text exactly — mismatch = SEO error
 2. FTP path ≠ web root — verify the actual served directory
 3. chown www-data after SCP — nginx returns 403 without it
-4. hreflang mandatory for bilingual sites
-5. Don't over-edit the author's voice — if they said "this is bullshit", keep it
-6. Google Trends returns HTTP 429 if polled too fast — add backoff between requests
+4. Don't over-edit the author's voice — if they said "this is bullshit", keep it
+5. Google Trends returns HTTP 429 if polled too fast — add backoff between requests
 
 ## API ENDPOINTS REFERENCE
 
@@ -129,13 +127,13 @@ curl https://api.deepseek.com/v1/chat/completions \
 
 **Google Suggest (semantics, free, no key):**
 ```bash
-curl 'https://suggestqueries.google.com/complete/search?client=firefox&hl=ru&q=keyword'
+curl 'https://suggestqueries.google.com/complete/search?client=firefox&hl=en&q=keyword'
 ```
 
 **Google Trends (trending, free):**
 ```python
 from pytrends.request import TrendReq
-pytrends = TrendReq(hl='ru', tz=300)
+pytrends = TrendReq(hl='en', tz=300)
 pytrends.build_payload(['keyword'])
 df = pytrends.interest_over_time()
 ```

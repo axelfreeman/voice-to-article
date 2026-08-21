@@ -39,7 +39,7 @@ No Ahrefs. No Semrush. No blank page. Just you and your phone.
 
 1. **You send voice notes** → Telegram bot transcribes via Whisper
 2. **AI extracts structure** → thesis, sections, FAQ, keywords
-3. **Semantic research** → Google Suggest + Google Trends for trending topics (any language)
+3. **Semantic research** → Google Suggest + Google Trends for trending topics
 4. **AI writes the article** → DeepSeek (or Claude/GPT) — SEO-optimized, human-readable
 5. **Auto-deploy** → FTP/SCP to your site + GitHub markdown backup
 6. **Schema markup** → Article + FAQPage JSON-LD for AI search visibility (AEO)
@@ -78,7 +78,7 @@ No dashboards. No content calendars. Just talk about what you know.
 - **Jasper / Copy.ai / Writesonic** — AI copywriting. Replaced by DeepSeek with your voice prompt.
 - **SurferSEO / Clearscope** — content optimization. Replaced by semantic cluster injection into Article Schema.
 - **WordPress / Ghost / Webflow** — CMS. Replaced by static HTML deploy via SCP/FTP.
-- **Yoast / RankMath** — on-page SEO. Replaced by auto-generated meta, hreflang, schema, canonical.
+- **Yoast / RankMath** — on-page SEO. Replaced by auto-generated meta, schema, canonical.
 - **A human copywriter** — $200-500/article. Replaced by $0.12 of API calls.
 
 You still need a brain. You still need expertise. But you no longer need 6 tools and an afternoon to publish one article.
@@ -101,7 +101,7 @@ You still need a brain. You still need expertise. But you no longer need 6 tools
 | **Telegram Bot** | Receives voice messages | Free |
 | **Whisper (OpenAI)** | Speech-to-text | $0.006/min (~$0.10/article) |
 | **DeepSeek API** | Article generation + semantics | ~$0.015/article |
-| **Google Suggest / Trends** | Keyword research (any language) | Free |
+| **Google Suggest / Trends** | Keyword research | Free |
 | **Your server** | Host the published HTML | Whatever you pay |
 
 **~$0.12 per published article.** Cheaper than a coffee. Better ROI than most ad spend.
@@ -169,10 +169,10 @@ Send a voice message to your bot. The agent picks it up, transcribes, structures
 
 ## Real Numbers
 
-From my production pipeline (axelfreeman.com + axelfreeman.ru):
+From my production pipeline (axelfreeman.com):
 
-- **83 published Q&A pages** (44 RU + 39 EN)
-- **~100K monthly search impressions** across both languages
+- **83 published Q&A pages**
+- **~100K monthly search impressions**
 - **4-6 FAQ items per page** with FAQPage Schema
 - **Article published in <2 minutes** after voice memo received
 
@@ -185,13 +185,11 @@ This isn't "AI wrote me a blog post." This is:
 - **Trending topic detection** — Google Trends to find what's growing
 - **Cluster analysis** — group keywords by intent, not just volume
 - **Exact match filtering** — broad numbers lie, exact match tells the truth
-- **Cross-language** — any language via Google Suggest + Trends
 
 Example Google Suggest expansions for "AI copywriting":
 
 - `ai copywriting` → `ai copywriting tools`, `ai copywriting free`, `ai copywriting generator`
-- `нейросеть текст` → `нейросеть написать текст`, `нейросеть текст онлайн`
-- `аудио в текст` → `аудио в текст онлайн`, `аудио в текст бесплатно`
+- `voice to text` → `voice to text online`, `voice to text free`, `voice to text app`
 
 Full semantic data: `semantics/` directory.
 
@@ -206,7 +204,6 @@ Full semantic data: `semantics/` directory.
 - 8 H2 sections with bullet points
 - 2 card blocks (key insight + CTA)
 - 6 FAQ with matching JSON-LD Schema
-- hreflang cross-link to RU version
 - Google Analytics tracking
 
 See `examples/` for the full before/after.
@@ -234,12 +231,9 @@ voice-to-article/
 ├── PROMPT.md              ← Universal system prompt for any LLM agent
 ├── SETUP.md               ← Detailed setup: bots, keys, deploy targets
 ├── semantics/
-│   ├── ru-clusters.json   ← RU keyword clusters (Google Suggest)
-│   └── en-suggestions.json← EN keyword suggestions (Google Suggest)
+│   └── en-suggestions.json← keyword suggestions (Google Suggest)
 ├── examples/
-│   ├── voice-memo-raw.txt ← Raw transcript of a real voice memo
-│   ├── article-ru.html    ← Final published RU article
-│   └── article-en.html    ← Final published EN article
+│   └── article-en.html    ← Final published article
 └── .github/
     └── FUNDING.yml
 ```
