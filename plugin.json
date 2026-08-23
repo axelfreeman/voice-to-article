@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schema.json",
+  "name": "voice-to-article",
+  "version": "2.2.0",
+  "description": "Voice memo → SEO article pipeline — transcription, structure extraction, semantic research, HTML generation, and deploy with Article + FAQPage Schema.",
+  "author": "Axel Freeman",
+  "license": "MIT",
+  "homepage": "https://github.com/axelfreeman/voice-to-article",
+  "repository": "https://github.com/axelfreeman/voice-to-article",
+  "skills": [
+    {
+      "name": "voice-to-article",
+      "description": "Voice memo → SEO article pipeline — transcription, structure extraction, semantic research, HTML generation, and deploy with Article + FAQPage Schema."
+    }
+  ],
+  "mcpServers": []
+}
