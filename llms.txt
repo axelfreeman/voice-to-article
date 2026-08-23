@@ -1,0 +1,3 @@
+# Voice to Article
+
+Voice memo → SEO article pipeline. Transcription, structure extraction, semantic research, HTML generation, and deploy with Article + FAQPage Schema.
